@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, override_on_non_overriding_member, no_logic_in_create_state, library_private_types_in_public_api, sort_child_properties_last
 
 import 'package:flutter/material.dart';
 
@@ -39,11 +39,17 @@ class CarView extends StatelessWidget {
               ],
             ),
             Spacer(),
-            Image.asset('assets/audicar.png'),
-            Image.asset('assets/audilogo.png'),
+            Image.asset(
+              'assets/kiasorento.png',
+              width: 250,
+            ),
+            Image.asset(
+              'assets/kialogo.png',
+              width: 100,
+            ),
             SizedBox(height: 10),
             Text(
-              'Audi Q7 2022',
+              'KIA Sorento 2022',
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Poppins',
@@ -65,41 +71,49 @@ class CardViewItem extends StatelessWidget {
   Color backgroundItem;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // width: MediaQuery.of(context).size.width / 2 - 65,
-      width: 155,
-      height: 127,
-      decoration: BoxDecoration(
+    return Material(
+      child: InkWell(
         borderRadius: BorderRadius.circular(25),
-        color: Color(0xff3B95FF).withOpacity(0.1),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: backgroundItem.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(48),
-            ),
-            child: Center(child: Image.asset(assetsUrl)),
+        splashColor: Color(0xff3B95FF).withOpacity(0.3),
+        onTap: () {},
+        child: Container(
+          width: 155,
+          height: 127,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Color(0xff3B95FF).withOpacity(0.1),
           ),
-          SizedBox(
-            height: 10,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: backgroundItem.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(48),
+                ),
+                child: Center(child: Image.asset(assetsUrl)),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              )
+            ],
           ),
-          Text(
-            title,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Poppins',
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          )
-        ],
+        ),
       ),
+      borderRadius: BorderRadius.circular(25),
+      color: Colors.transparent,
     );
   }
 }
